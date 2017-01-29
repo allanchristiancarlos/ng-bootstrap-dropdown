@@ -26,12 +26,12 @@
 
 		$timeout(function() {
 			$scope.isYearFieldDisabled = false;
-			$scope.years = {
-				"2014": "2014",
-				"2015": "2015",
-				"2016": "2016",
-				"2017": "2017"
-			};
+			$scope.years = [
+				"2017",
+				"2016",
+				"2015",
+				"2014"
+			];
 		}, 100);
 
 		$scope.onSelectYear = function(value) {
