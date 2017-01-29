@@ -1,0 +1,31 @@
+{
+  "name": "ng-bootstrap-dropdown",
+  "version": "1.0.0",
+  "description": "This is not finish yet",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allanchristiancarlos/ng-bootstrap-dropdown.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allanchristiancarlos/ng-bootstrap-dropdown/issues"
+  },
+  "homepage": "https://github.com/allanchristiancarlos/ng-bootstrap-dropdown#readme",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1",
+    "jshint": "^2.9.4"
+  }
+}
