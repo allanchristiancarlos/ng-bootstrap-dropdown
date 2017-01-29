@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-(function(window, angular) {
+((window, angular) => {
 	'use strict';
 
 	var ngBootstrapDropdownModule = angular.module('ngBootstrapDropdown', []);
@@ -18,9 +18,10 @@
 				required: '=required',
 				ngBootstrapDropdownOptions: '=ngBootstrapDropdownOptions',
 				ngBootstrapDropdownPlaceholder: '@ngBootstrapDropdownPlaceholder',
+				ngBootstrapDropdownButtonClass: '@ngBootstrapDropdownButtonClass',
 				ngBootstrapDropdownOnSelect: '&'
 			},
-			template: '<div class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="ngDisabled" ng-class="ngClass">{{ getLabel() }}<span class="caret"></span></button><ul class="dropdown-menu"><li ng-repeat="(value, label) in ngBootstrapDropdownOptions"><a href="" ng-click="selectItem(value)">{{ label }}</a></li></ul></div>',
+			template: '<div class="dropdown"><button class="{{ getButtonClasses() }} dropdown-toggle" data-toggle="dropdown" ng-disabled="ngDisabled" ng-class="ngClass">{{ getLabel() }}<span class="caret"></span></button><ul class="dropdown-menu"><li ng-repeat="(value, label) in ngBootstrapDropdownOptions"><a href="" ng-click="selectItem(value)">{{ label }}</a></li></ul></div>',
 			link: (scope, element, attributes, controller) => {
 				scope.getLabel = function() {
 					if (scope.ngModel === null || scope.ngModel === "") {
@@ -42,6 +43,14 @@
 					if (scope.ngBootstrapDropdownOnSelect !== "undefined") {
 						scope.ngBootstrapDropdownOnSelect({value: value});
 					}
+				};
+
+				scope.getButtonClasses = () => {
+					if (scope.ngBootstrapDropdownButtonClass === undefined) {
+						return "btn btn-default";
+					}
+
+					return scope.ngBootstrapDropdownButtonClass;
 				};
 
 				if (controller) {
