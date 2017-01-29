@@ -12,34 +12,93 @@
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.css">
+		<!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
 		<style>
 			.ng-submitted .ng-invalid .dropdown-toggle {
 				border: 1px solid red;
+			}
+			.dropdown {
+				position: relative;
+			}
+			.dropdown .btn,
+			.dropdown .dropdown-menu {
+				width: 100%;
+			}
+			.dropdown .btn {
+				text-align: left;
+			}
+			.dropdown .caret { 
+				float: right;
+				margin-top: 8px;
+			}
+			.dropdown-menu > li > a {
+				padding-top: 9px;
+				padding-bottom: 9px;
+				min-height: 38px;
 			}
 		</style>
 	</head>
 	<body data-ng-app="app">
 		
+		<div class="container">
+			<div class="page-header">
+				<h1>NG Bootstrap Dropdown</h1>
+				<p class="lead">Bootstrap dropdown for angular</p>
+			</div>
+		</div>
+
 		<div class="container" data-ng-controller="mainController">
 			<p>
 				<strong>Selected: </strong>{{ selected }}	
 			</p>
 			<form name="form" ng-submit="onFormSubmit(form)" novalidate>
-				<div class="form-group">
-					<ng-bootstrap-dropdown name="dropdown"
-						ng-bootstrap-dropdown-options="options" 
-						ng-bootstrap-dropdown-placeholder="{{ isLoading ? 'Loading..' : 'Select Years' }}"
-						ng-bootstrap-dropdown-on-select="onSelect(value)" 
-						ng-bootstrap-dropdown-button-class="btn btn-default" 
-						ng-model="selected" 
-						ng-class="{ 'is-loading': isLoading, 'not-loading': !isLoading }"
-						ng-disabled="isLoading" 
-						required></ng-bootstrap-dropdown>
+				<div class="row">
+					<div class="col-xs-6">
+						{{ year }}
+						<div class="form-group">
+							<ng-bootstrap-dropdown name="dropdown"
+								ng-bootstrap-dropdown-options="years" 
+								ng-bootstrap-dropdown-placeholder="{{ isYearFieldDisabled ? 'Loading..' : 'Select Year' }}"
+								ng-bootstrap-dropdown-on-select="onSelectYear(value)" 
+								ng-model="year" 
+								ng-disabled="isYearFieldDisabled" 
+								required></ng-bootstrap-dropdown>
+						</div>
+						<div class="form-group">
+							{{ make }}
+							<ng-bootstrap-dropdown name="dropdown"
+								ng-bootstrap-dropdown-options="makes" 
+								ng-bootstrap-dropdown-placeholder="{{ isMakeFieldDisabled ? 'Loading..' : 'Select Make' }}"
+								ng-bootstrap-dropdown-on-select="onSelectMake(value)" 
+								ng-model="make" 
+								ng-disabled="isMakeFieldDisabled" 
+								required></ng-bootstrap-dropdown>
+						</div>
+						<div class="form-group">
+							{{ model }}
+							<ng-bootstrap-dropdown name="dropdown"
+								ng-bootstrap-dropdown-options="models" 
+								ng-bootstrap-dropdown-placeholder="{{ isModelFieldDisabled ? 'Loading..' : 'Select Model' }}"
+								ng-bootstrap-dropdown-on-select="onSelectModel(value)" 
+								ng-model="model" 
+								ng-disabled="isModelFieldDisabled" 
+								required></ng-bootstrap-dropdown>
+						</div>
+						<div class="form-group">
+							{{ trim }}
+							<ng-bootstrap-dropdown name="dropdown"
+								ng-bootstrap-dropdown-options="trims" 
+								ng-bootstrap-dropdown-placeholder="{{ isTrimFieldDisabled ? 'Loading..' : 'Select Trim' }}"
+								ng-model="trim" 
+								ng-disabled="isTrimFieldDisabled" 
+								required></ng-bootstrap-dropdown>
+						</div>
+					</div>
+					<div class="col-xs-6"></div>
 				</div>
 				 
-				<input type="submit" value="Submit" class="btn btn-primary">
+				<input type="submit" value="Submit" class="btn btn-success">
 			</form>
 		</div>
 
