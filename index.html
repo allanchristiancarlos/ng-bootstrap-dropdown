@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Select to dropdown</title>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+	</head>
+	<body data-ng-app="app">
+		
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Select to dropdown</h1>
+				<p>Contents ...</p>
+				<p>
+					<a class="btn btn-primary btn-lg">Learn more</a>
+				</p>
+			</div>
+		</div>
+
+		<div class="container" data-ng-controller="mainController">
+			{{ selectedChoice }}			
+			<p>
+				<form name="form" ng-submit="onFormSubmit(form)" novalidate>
+					<div class="form-group">
+						<dropdown name="dropdown"
+							ng-model="selectedChoice" 
+							options="['Choice 1','Choice 2', 'Choice 3']" 
+							placeholder="{{ isLoading ? 'Loading..' : 'Select Years' }}"
+							ng-class="{ 'is-loading': isLoading, 'not-loading': !isLoading }"
+							on-select="funcOnController(value)" 
+							ng-disabled="isLoading" 
+							required></dropdown>
+					</div>
+					<div class="form-group">
+						<dropdown
+							ng-model="selectedMake" 
+							required>
+							<dropdown-option value="test">Label</dropdown-option>
+							<dropdown-option value="test-2">Item 2</dropdown-option>
+						</dropdown>
+
+					</div>
+					
+					<input type="submit" value="Submit" class="btn btn-primary">
+
+					<outer-directive ng-model="selectedMake">
+					  <inner-directive>Link</inner-directive>
+					</outer-directive>
+				</form>
+			</p>
+		</div>
+
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="scripts.js"></script>
+
+	</body>
+</html>
