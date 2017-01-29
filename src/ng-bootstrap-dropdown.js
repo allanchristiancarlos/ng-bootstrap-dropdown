@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 (function(window, angular) {
 	'use strict';
 
@@ -6,7 +7,7 @@
 	/**
 	 * ngBootstrapDropdown Directive
 	 */
-	ngBootstrapDropdownModule.directive('ngBootstrapDropdown', function() {
+	ngBootstrapDropdownModule.directive('ngBootstrapDropdown', () => {
 		return {
 			restrict: 'E',
 			require: 'ngModel',
@@ -20,7 +21,7 @@
 				ngBootstrapDropdownOnSelect: '&'
 			},
 			template: '<div class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="ngDisabled" ng-class="ngClass">{{ getLabel() }}<span class="caret"></span></button><ul class="dropdown-menu"><li ng-repeat="(value, label) in ngBootstrapDropdownOptions"><a href="" ng-click="selectItem(value)">{{ label }}</a></li></ul></div>',
-			link: function(scope, element, attributes, controller) {
+			link: (scope, element, attributes, controller) => {
 				scope.getLabel = function() {
 					if (scope.ngModel === null || scope.ngModel === "") {
 						return scope.ngBootstrapDropdownPlaceholder;
@@ -35,7 +36,7 @@
 					return itemLabel;
 				};
 
-				scope.selectItem = function(value) {
+				scope.selectItem = (value) => {
 					scope.ngModel = value;
 
 					if (scope.ngBootstrapDropdownOnSelect !== "undefined") {
@@ -44,10 +45,10 @@
 				};
 
 				if (controller) {
-					controller.$validators.required = function(modelValue, viewValue) {
+					controller.$validators.required = (modelValue, viewValue) => {
 						return !attributes.required || !controller.$isEmpty(viewValue);
 					};
-					attributes.$observe('required', function() {
+					attributes.$observe('required', () => {
 						controller.$validate();
 					});
 				}

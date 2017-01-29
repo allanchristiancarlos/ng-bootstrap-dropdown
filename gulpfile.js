@@ -5,12 +5,14 @@ var gulp 	   = require('gulp'),
 	concat     = require('gulp-concat'),
 	notify     = require('gulp-notify'),
 	livereload = require('gulp-livereload'),
-	del = require('del');
+	babel      = require('gulp-babel'),
+	del        = require('del');
 
 gulp.task('scripts', function() {
   return gulp.src('src/**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
+    .pipe(babel({presets: ['es2015']}))
     .pipe(gulp.dest('dist'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
