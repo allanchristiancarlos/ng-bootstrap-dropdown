@@ -22,7 +22,7 @@
 				ngBootstrapDropdownUseLabelAsValue: '=ngBootstrapDropdownUseLabelAsValue',
 				ngBootstrapDropdownOnSelect: '&'
 			},
-			template: '<div class="dropdown"><button class="{{ getButtonClasses() }} dropdown-toggle" data-toggle="dropdown" ng-disabled="ngDisabled" ng-class="ngClass">{{ getLabel() }}<span class="caret"></span></button><ul class="dropdown-menu"><li ng-repeat="(value, label) in ngBootstrapDropdownOptions"><a href="" ng-click="selectItem(ngBootstrapDropdownUseLabelAsValue ? label : value)">{{ label }}</a></li></ul></div>',
+			template: '<div class="dropdown"><button class="{{ getButtonClasses() }} dropdown-toggle" data-toggle="dropdown" ng-disabled="ngDisabled" ng-class="ngClass">{{ getLabel() }}<span class="caret"></span></button><ul class="dropdown-menu"><li ng-if="ngBootstrapDropdownOptions.length === 0"><a href="">{{ ngBootstrapDropdownPlaceholder }}</a></li><li ng-repeat="(value, label) in ngBootstrapDropdownOptions"><a href="" ng-click="selectItem(ngBootstrapDropdownUseLabelAsValue ? label : value)">{{ label }}</a></li></ul></div>',
 			link: (scope, element, attributes, controller) => {
 				scope.getLabel = function() {
 					if (scope.ngModel === null || scope.ngModel === "" || typeof scope.ngModel === "undefined") {
